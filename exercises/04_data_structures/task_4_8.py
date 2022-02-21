@@ -26,3 +26,10 @@
 """
 
 ip = "192.168.3.1"
+ip = ip.split('.')
+
+for elem in ip:
+    print(elem.ljust(10), end='')
+print()
+for elem in ip:
+    print(bin(int(elem))[2:].rjust(8, '0'), end='  ')

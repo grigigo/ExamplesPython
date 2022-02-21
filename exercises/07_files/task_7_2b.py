@@ -17,3 +17,21 @@
 """
 
 ignore = ["duplex", "alias", "configuration"]
+
+name_read = 'config_sw1.txt'
+name_write = 'config_write.txt'
+file_r = open(name_read)
+file_w = open(name_write, 'w')
+
+for elem in file_r:
+    flag = True
+    if elem.count('!'):
+        flag = False
+    for ign in ignore:
+        if ign in elem:
+            flag = False
+    if flag:
+        file_w.write(elem)
+
+file_r.close()
+file_w.close()

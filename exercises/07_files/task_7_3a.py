@@ -40,3 +40,28 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+name_r = 'CAM_table.txt'
+
+file_r = open(name_r)
+
+for line in file_r:
+    if not 'Vlan' in line:
+        pass
+    else:
+        file_r.readline()
+        break
+
+table = []
+for line in file_r:
+    line = line.split()
+    line.pop(2)
+    line[0] = int(line[0])
+    table.append(line)
+
+table.sort()
+
+for elem in table:
+    print(f'{elem[0]:<8}{elem[1]:<18}{elem[2]:<8}')
+
+file_r.close()

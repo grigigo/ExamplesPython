@@ -17,3 +17,18 @@
 """
 
 ignore = ["duplex", "alias", "configuration"]
+
+name = 'config_sw1.txt'
+file = open(name)
+
+for elem in file:
+    flag = True
+    if elem.count('!'):
+        flag = False
+    for ign in ignore:
+        if ign in elem:
+            flag = False
+    if flag:
+        print(elem, end='')
+
+file.close()

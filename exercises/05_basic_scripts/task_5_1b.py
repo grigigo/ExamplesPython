@@ -50,3 +50,14 @@ london_co = {
         "routing": True,
     },
 }
+
+answer1 = input('Введите имя устройства: ')
+text = []
+for elem in london_co[answer1]:
+    text.append(elem)
+
+print('Введите параметр устройства (', end='')
+print(', '.join(text), end='')
+print('): ', end='')
+answer2 = input()
+print(london_co[answer1][answer2])

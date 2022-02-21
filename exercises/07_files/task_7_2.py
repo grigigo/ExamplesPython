@@ -39,3 +39,12 @@ interface Ethernet0/3
 ...
 
 """
+
+name = 'config_sw1.txt'
+file = open(name)
+
+for elem in file:
+    if not elem.count('!'):
+        print(elem, end='')
+
+file.close()
