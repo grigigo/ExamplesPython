@@ -43,14 +43,15 @@ def convert_ranges_to_ip_list(ip_list):
     result = []
 
     for elem in ip_list:
-        if elem.find('-') > 0:
-            ipv4 = ipaddress.ip_address(elem.split('-')[0])
-            if elem.split('-')[1].find('.') > 0:
-                num = int(elem.split('-')[1].split('.')[-1]) - int(str(ipv4).split('.')[-1])
+        if '-' in elem:
+            first, second = elem.split('-')
+            ipv4 = ipaddress.ip_address(first)
+            if '.' in second:
+                num = int(second.split('.')[-1]) - int(str(ipv4).split('.')[-1])
                 for i in range(0, num + 1):
                     result.append(str(ipv4 + i))
             else:
-                for i in range(0, int(elem.split('-')[1])):
+                for i in range(0, int(second)):
                     result.append(str(ipv4 + i))
         else:
             result.append(elem)
