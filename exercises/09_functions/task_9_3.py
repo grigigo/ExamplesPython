@@ -23,3 +23,25 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+
+def get_int_vlan_map(config_filename):
+    file = open(config_filename)
+    result = {}
+    for line in file:
+        if 'FastEthernet' in line:
+            interface = line.split()[1]
+            line = file.readline().split()[-1]
+            if line == 'access':
+                vlan = file.readline().split()[-1]
+                result[interface] = vlan
+            if line == 'dot1q':
+                result[interface] = file.readline().split()[-1].split(',')
+
+    file.close()
+    return result
+
+
+config_filename = 'config_sw1.txt'
+result = get_int_vlan_map(config_filename)
+print(result)
